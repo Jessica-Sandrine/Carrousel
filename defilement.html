@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style2.css">
+    <title>marque</title>
+</head>
+<body>
+    <ul id="navigation">
+        <li><a href="index.html">Sans défilement</a></li>
+        <li><a href="defilement.html">Avec Defilement</a></li>
+      </ul>
+  <main>
+
+    <div id="carousel">
+
+       <div class="hideLeft">
+        <img src="http://62.210.247.201:9000/adidas.png">
+      </div>
+
+      <div class="prevLeftSecond">
+        <img src="http://62.210.247.201:9000/bhfitness.png">
+      </div>
+
+      <div class="prev">
+        <img src="http://62.210.247.201:9000/domyos.png">
+      </div>
+
+      <div class="selected">
+        <img src="http://62.210.247.201:9000/kettler.png">
+      </div>
+
+      <div class="next">
+        <img src="http://62.210.247.201:9000/reebok.png">
+      </div>
+
+      <div class="nextRightSecond">
+        <img src="http://62.210.247.201:9000/tunturi.png">
+      </div>
+
+      <div class="hideRight">
+        <img src="http://62.210.247.201:9000/zycle.png">
+      </div>
+
+      <div class="hideRight">
+        <img src="http://62.210.247.201:9000/BKOOL.png">
+      </div>
+
+      <div class="hideRight">
+        <img src="http://62.210.247.201:9000/BTWIN.png">
+      </div>
+
+      <div class="hideRight">
+        <img src="http://62.210.247.201:9000/fitshow.png">
+      </div>
+
+      <div class="hideRight">
+        <img src="http://62.210.247.201:9000/Tacx.png">
+      </div>
+
+      <div class="hideRight">
+        <img src="http://62.210.247.201:9000/klarfit.png">
+      </div>
+
+      <div class="hideRight">
+        <img src="http://62.210.247.201:9000/Hammer.png">
+      </div>
+
+
+    </div>
+
+    <div class="buttons">
+      <button id="prev">Prev</button>
+      <button id="next">Next</button>
+    </div>
+
+  </main>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script>
+        function moveToSelected(element) {
+
+            if (element == "next") {
+                var selected = $(".selected").next();
+            } else if (element == "prev") {
+                var selected = $(".selected").prev();
+            } else {
+                var selected = element;
+            }
+
+            var next = $(selected).next();
+            var prev = $(selected).prev();
+            var prevSecond = $(prev).prev();
+            var nextSecond = $(next).next();
+
+            $(selected).removeClass().addClass("selected");
+
+            $(prev).removeClass().addClass("prev");
+            $(next).removeClass().addClass("next");
+
+            $(nextSecond).removeClass().addClass("nextRightSecond");
+            $(prevSecond).removeClass().addClass("prevLeftSecond");
+
+            $(nextSecond).nextAll().removeClass().addClass('hideRight');
+            $(prevSecond).prevAll().removeClass().addClass('hideLeft');
+
+        }
+
+        $(document).keydown(function (e) {
+            switch (e.which) {
+                case 37: // left
+                    moveToSelected('prev');
+                    break;
+
+                case 39: // right
+                    moveToSelected('next');
+                    break;
+
+                default:
+                    return;
+            }
+            e.preventDefault();
+        });
+
+        $('#carousel div').click(function () {
+            moveToSelected($(this));
+        });
+
+        $('#prev').click(function () {
+            moveToSelected('prev');
+        });
+
+        $('#next').click(function () {
+            moveToSelected('next');
+        });
+</script>
+</body>
+</html>
